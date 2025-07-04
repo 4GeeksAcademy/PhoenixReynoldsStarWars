@@ -1,5 +1,5 @@
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
+	<footer className="footer mt-auto pt-3 text-center">
 		<p className="text-secondary">
 			Check out <a className="text-danger" target="_blank" href="https://youtu.be/dQw4w9WgXcQ">this link</a> trust me :)
 		</p>
