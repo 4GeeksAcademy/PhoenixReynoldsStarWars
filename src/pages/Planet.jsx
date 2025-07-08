@@ -38,7 +38,7 @@ export const Planet = () => {
                 </div>
                 <div className="col-2">
                     <h4>Diameter</h4>
-                    <p>{planet.diameter}</p>
+                    <p>{planet.diameter}km</p>
                 </div>
                 <div className="col-2">
                     <h4>Rotational Period</h4>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import PeopleCards from "../components/PeopleCards"
 
 export const Person = () => {
     const [person, setPerson] = useState({})
@@ -23,7 +24,7 @@ export const Person = () => {
                     {/* Pass result into Person.jsx and grab the uid from there?? */}
                 </div>
                 <div className="col-4 text-center">
-                    <h1>{person.name}</h1> {/* not usint person.properties or props */}
+                    <h1>{person.name}</h1> {/* not using person.properties or props */}
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 </div>
             </div>
@@ -51,7 +52,7 @@ export const Person = () => {
                 </div>
                 <div className="col-2">
                     <h4>Homeworld</h4>
-                    <p>(homeworld link here)</p>
+                    <Link to={person.homeworld} className="text-danger"> Visit Homeworld </Link> {/* grab homeworld uid from given link, then grab name from planet uid? */}
                 </div>
             </div>
         </div>

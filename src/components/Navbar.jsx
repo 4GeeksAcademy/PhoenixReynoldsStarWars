@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import logoImageURL from "../assets/img/SturWursLogo.png";
+import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
 
 export const Navbar = () => {
+	const { store, dispatch } = useGlobalReducer()
 
 	return (
 		<nav className="navbar navbar-light bg-light">
@@ -12,9 +14,13 @@ export const Navbar = () => {
 				<div className="ml-auto dropdown">
 					<button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Favorites</button>
 					<ul className="dropdown-menu">
-						<li><a className="dropdown-item" href="#">Fav 1</a></li>
-						<li><a className="dropdown-item" href="#">Fav 2</a></li>
-						<li><a className="dropdown-item" href="#">Fav 3</a></li>
+						{store.favorites.map((favorite) => {
+							return(
+							<li>
+								{favorite.name} {/*surround in link tag to link to individual character page later */}
+								{/* button to delete goes here later */}
+							</li>)
+						})}
 					</ul>
 				</div>
 			</div>
