@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import PeopleCards from "../components/PeopleCards"
 
 export const Person = () => {
     const [person, setPerson] = useState({})
     const { uid } = useParams()
+    const { store, dispatch } = useGlobalReducer()
 
     const getPeopleInfo = () => {
         fetch("https://www.swapi.tech/api/people/" + uid)
@@ -20,12 +25,17 @@ export const Person = () => {
         <div className="container">
             <div className="row">
                 <div className="col-8 bg-secondary rounded text-center bg-opacity-25">
-                    <img src={`https://imgflip.com/s/meme/This-Is-Where-Id-Put-My-Trophy-If-I-Had-One.jpg`} alt="..." />
+                    <img src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/people/${uid}.jpg?raw=true`} alt="..." />
                     {/* Pass result into Person.jsx and grab the uid from there?? */}
                 </div>
-                <div className="col-4 text-center">
-                    <h1>{person.name}</h1> {/* not using person.properties or props */}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <div className="col-4 text-center d-flex align-items-center">
+                    <div><h1>{person.name}</h1> {/* not using person.properties or props */}
+                    <p>Mon kee chees kreespa Greedo? {person.name}, ma kee chee zay. Hassa ba una kulkee malia lude eveela deesa sloan dwa spasteega el was nwo yana da gooloo? Han, ma bookie, baldo nee anna dodo da eena. See fa doi dee yaba Dee do ee deen. Ee ya ba ma dookie massa eek bon chee ko pa na green. Na meeto do buny dunko la cho ya.</p>
+                    <button className="btn border-warning text-warning" style={{width: "150px", height: "50px"}}
+                    onClick={() => dispatch({
+                        type: "toggle_favorite",
+                        payload: { uid: uid, name: person.name, type: "person", id: person._id }
+                    })}> {store.favorites.some((object) => object.name === person.name) ? <FontAwesomeIcon icon={faHeartSolid} /> : <FontAwesomeIcon icon={faHeartRegular} />} </button></div>
                 </div>
             </div>
             <hr className="text-danger"></hr>

@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";  // Custom hook for accessing the global state.
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+
 
 export const PlanetsCards = ({ props }) => {
+    const { store, dispatch } = useGlobalReducer()
 
     return (
 
@@ -13,7 +19,15 @@ export const PlanetsCards = ({ props }) => {
                 <p className="card-text my-0">Climate: {props.properties.climate}</p>
                 <p className="card-text my-0">Diameter: {props.properties.diameter}km</p>
                 <p className="card-text my-0">Population: {props.properties.population}</p>
-                <Link to={`/planet/${props.uid}`} className="btn btn-primary w-50 mt-2" >More Info</Link> {/* replace #/a with link to more info page */}
+                <div className="mt-2 d-flex display-items-between">
+                    <Link to={`/planet/${props.uid}`} className="btn btn-primary w-50" >More Info</Link>
+                    <button className="ms-auto btn border-warning text-warning"
+                        onClick={() => dispatch({
+                            type: "toggle_favorite",
+                            payload: { uid: props.uid, name: props.properties.name, type: "planet", id: props._id }
+                        })}> {store.favorites.some((object) => object.name === props.properties.name) ? <FontAwesomeIcon icon={faHeartSolid} /> : <FontAwesomeIcon icon={faHeartRegular} />} </button>
+                    {/* ternary here to switch heart icon from regular to solid; if props.uid is favorited, then switch? */}
+                </div>
             </div>
         </div>
 

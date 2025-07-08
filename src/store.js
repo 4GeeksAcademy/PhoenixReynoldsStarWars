@@ -1,3 +1,5 @@
+import { object } from "prop-types";
+
 export const initialStore = () => {
   return {
     message: null,
@@ -19,22 +21,16 @@ export const initialStore = () => {
 
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
-    case 'add_favorite':
+    case 'toggle_favorite':
 
-      const { uid, name } = action.payload //draw uid from url to avoid grabbing both character and planet of the same uid
-
-      return {
-        ...store,
-        favorites: [...store.favorites, { uid, name }]
-      };
-    case 'remove_favorite':
-
-      const { uid } = action.payload //strange error here?
+      const { uid, name, type } = action.payload //draw uid from url to avoid grabbing both character and planet of the same uid, unecessary deconstruction
+      const isFavorited = store.favorites.some((object) => object.type === type && object.uid === uid) //checks if the payload (indiv. object) is favorited. Didn't like getting the object, had to be more specific (inside object parenthesis)
 
       return {
         ...store,
-        favorites: store.favorites.filter
+        favorites: isFavorited ? store.favorites.filter((object) => object.id !== action.payload.id) : [...store.favorites, action.payload]
       };
+    
     case 'add_task':
 
       const { id, color } = action.payload

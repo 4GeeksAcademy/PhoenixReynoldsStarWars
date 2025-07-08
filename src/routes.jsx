@@ -22,8 +22,9 @@ export const router = createBrowserRouter(
 
     // Root Route: All navigation will start from here.
     <Route path="/" element={<Layout />} errorElement={
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <h1 className="text-center text-danger">This is not the page you're looking for...</h1>
+      <div className="justify-content-center align-items-center vh-100 bg-black">
+        <div className="text-center"> <img src="https://static.wikia.nocookie.net/theclonewiki/images/e/ee/Pilf_Mukmuk_Switch-1-.png/revision/latest?cb=20111028185118" alt="..." style={{height: "30%", width: "40%"}}></img> </div>
+        <h1 className="text-center text-danger mt-3">This is not the page you're looking for...</h1>
       </div>
     } >
 

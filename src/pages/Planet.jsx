@@ -19,7 +19,7 @@ export const Planet = () => {
         <div className="container">
             <div className="row">
                 <div className="col-8 bg-secondary rounded text-center bg-opacity-25">
-                    <img src={`https://imgflip.com/s/meme/This-Is-Where-Id-Put-My-Trophy-If-I-Had-One.jpg`} alt="..." />
+                    <img src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/planets/${uid}.jpg?raw=true`} alt="..." />
                 </div>
                 <div className="col-4 text-center">
                     <h1>{planet.name}</h1> {/* not usint person.properties or props */}
