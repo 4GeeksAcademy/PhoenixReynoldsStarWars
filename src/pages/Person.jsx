@@ -21,6 +21,8 @@ export const Person = () => {
         getPeopleInfo();
     }, [])
 
+    const planetId = person.homeworld ? person.homeworld.split('/').filter(Boolean).pop() : null;
+
     return (
         <div className="container">
             <div className="row">
@@ -29,8 +31,9 @@ export const Person = () => {
                     {/* Pass result into Person.jsx and grab the uid from there?? */}
                 </div>
                 <div className="col-4 text-center d-flex align-items-center">
-                    <div><h1>{person.name}</h1> {/* not using person.properties or props */}
-                    <p>Mon kee chees kreespa Greedo? {person.name}, ma kee chee zay. Hassa ba una kulkee malia lude eveela deesa sloan dwa spasteega el was nwo yana da gooloo? Han, ma bookie, baldo nee anna dodo da eena. See fa doi dee yaba Dee do ee deen. Ee ya ba ma dookie massa eek bon chee ko pa na green. Na meeto do buny dunko la cho ya.</p>
+                    <div><h1 className="noselect text-danger">{person.name}</h1> {/* not using person.properties or props */}
+                    <hr className="text-danger noselect"></hr>
+                    <p className="noselect">Mon kee chees kreespa Greedo? <span className="text-danger">{person.name}</span>, ma kee chee zay. Hassa ba una kulkee malia lude eveela deesa sloan dwa spasteega el was nwo yana da gooloo? Han, ma bookie, baldo nee anna dodo da eena. See fa doi dee yaba Dee do ee deen. Ee ya ba ma dookie massa eek bon chee ko pa na green. Na meeto do buny dunko la cho ya.</p>
                     <button className="btn border-warning text-warning" style={{width: "150px", height: "50px"}}
                     onClick={() => dispatch({
                         type: "toggle_favorite",
@@ -38,8 +41,8 @@ export const Person = () => {
                     })}> {store.favorites.some((object) => object.name === person.name) ? <FontAwesomeIcon icon={faHeartSolid} /> : <FontAwesomeIcon icon={faHeartRegular} />} </button></div>
                 </div>
             </div>
-            <hr className="text-danger"></hr>
-            <div className="row text-danger text-center">
+            <hr className="text-danger noselect"></hr>
+            <div className="row text-danger text-center noselect">
                 <div className="col-2">
                     <h4>Birth Year</h4>
                     <p>{person.birth_year}</p>
@@ -62,7 +65,7 @@ export const Person = () => {
                 </div>
                 <div className="col-2">
                     <h4>Homeworld</h4>
-                    <Link to={person.homeworld} className="text-danger"> Visit Homeworld </Link> {/* grab homeworld uid from given link, then grab name from planet uid? */}
+                    <Link to={`/planet/${planetId}`} className="text-danger"> Visit Homeworld </Link> {/* grab homeworld uid from given link, then grab name from planet uid? */}
                 </div>
             </div>
         </div>

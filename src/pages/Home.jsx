@@ -20,7 +20,7 @@ export const Home = () => {
 	}
 
 	const getPlanetInfo = () => {
-		fetch("https://www.swapi.tech/api/planets/?expanded=true")
+		fetch("https://www.swapi.tech/api/planets?page=1&limit=20&expanded=true")
 			.then(resp => resp.json())
 			.then(dataObj => setPlanets(dataObj.results))
 			.catch(err => console.log(err))
