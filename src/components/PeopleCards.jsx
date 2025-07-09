@@ -5,7 +5,7 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 
 
-export const PeopleCards = ({ props }) => {
+export const PeopleCards = ({ props }) => { //both props and key are sent in, but only props are needed for what's being returned (displayed). The key (which in this case is index) is used to determine which entry is being displayed at each iteration of the loop, and the props (which is char) is being used to determine what information (properties) to pass into the following objects
     const { store, dispatch } = useGlobalReducer()
 
     return (
